@@ -6,7 +6,7 @@ const button = document.querySelector('button');
 const template = document.querySelector('#list-item-template');
 const LOCAL_STORAGE_PREFIX = 'ADVANCED_TODOLIST-';
 const TODO_STORAGE_KEY = `${LOCAL_STORAGE_PREFIX}-todos`;
-const todos = loadTodos();
+let todos = loadTodos();
 todos.forEach(renderTodo);
 
 // 1. type in todos and click the todo button to submit the form
@@ -37,13 +37,15 @@ list.addEventListener('change', (e) => {
 });
 
 list.addEventListener('click', (e) => {
-  if (!e.target.matches('data-button-delete')) return;
+  if (!e.target.matches('[data-button-delete]')) return;
   const parent = e.target.closest('.list-item');
   const todoId = parent.dataset.todoId;
   // Remove the todo from the screen
   parent.remove();
   // Remove the todo from the list
+  todos = todos.filter((todo) => todo.id !== todoId);
   // Save new todos
+  saveTodos();
 });
 
 function renderTodo(todo) {
