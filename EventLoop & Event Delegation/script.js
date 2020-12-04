@@ -19,13 +19,13 @@
 
 // test();
 
-const buttons = document.querySelectorAll('button');
+// const buttons = document.querySelectorAll('button');
 
-document.addEventListener('click', (e) => {
-  if (e.target.matches('button')) {
-    console.log('button clicked');
-  }
-});
+// document.addEventListener('click', (e) => {
+//   if (e.target.matches('button')) {
+//     console.log('button clicked');
+//   }
+// });
 
 // document.body.addEventListener('click', () => {
 //   console.log('Click body');
@@ -38,6 +38,18 @@ document.addEventListener('click', (e) => {
 //   }),
 // );
 
-const newButton = document.createElement('button');
-document.body.append(newButton);
-newButton.innerText = 5;
+// const newButton = document.createElement('button');
+// document.body.append(newButton);
+// newButton.innerText = 5;
+localStorage.setItem('name', 'Simon');
+sessionStorage.setItem('Age', 25);
+sessionStorage.removeItem('Age');
+
+const date = new Date(9999, 0, 1).toUTCString();
+const pastDate = new Date(1999, 0, 1).toUTCString();
+
+document.cookie = `name=simon; expires=${date}`;
+document.cookie = `age=25; expires=${date}`;
+document.cookie = `name=; expires=${pastDate}`;
+document.cookie = `age=; expires=${pastDate}`;
+console.log(document.cookie);
